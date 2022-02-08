@@ -1,10 +1,26 @@
 import React from "react";
+import GlobalSvgSelector from "../../../../assets/icons/global/GlobalSvgSelector";
+import { Day } from "./Days";
 import s from "./Days.module.scss";
 
-type Props = {};
+type Props = {
+  dayItem: Day;
+};
 
-const Card = (props: Props) => {
-  return <div></div>;
+const Card = ({ dayItem }: Props) => {
+  const { day, day_info, icon_id, temp_day, temp_night, info } = dayItem;
+  return (
+    <div className={s.card}>
+      <div className={s.day}>{day}</div>
+      <div className={s.day__info}>{day_info}</div>
+      <div className={s.day__img}>
+        <GlobalSvgSelector id={icon_id} />
+      </div>
+      <div className={s.temp__day}>{temp_day}</div>
+      <div className={s.temp__night}>{temp_night}</div>
+      <div className={s.info}>{info}</div>
+    </div>
+  );
 };
 
 export default Card;
