@@ -15,14 +15,18 @@ const Header = (props: Props) => {
   const colourStyles = {
     control: (styles: {}) => ({
       ...styles,
-      backgroundColor: 'rgba(71, 147, 255, 0.2)',
-      width: '194px',
-      height: '37px',
-      border: 'none',
-      borderRadius: '10px',
+      backgroundColor: 0 ? "#4f4f4f" : "rgba(71, 147, 255, 0.2)",
+      width: "194px",
+      height: "37px",
+      border: "none",
+      borderRadius: "10px",
       zIndex: 100,
-    })
-  }
+    }),
+    singleValue: (styles: {}) => ({
+      ...styles,
+      color: 0 ? "#fff" : "#000",
+    }),
+  };
 
   return (
     <header className={s.header}>
@@ -35,9 +39,13 @@ const Header = (props: Props) => {
 
       <div className={s.wrapper}>
         <div className={s.change_theme}>
-          <GlobalSvgSelector id="change-theme" />         
+          <GlobalSvgSelector id="change-theme" />
         </div>
-        <Select defaultValue={options[0]} styles={colourStyles} options={options} />
+        <Select
+          defaultValue={options[0]}
+          styles={colourStyles}
+          options={options}
+        />
       </div>
     </header>
   );
