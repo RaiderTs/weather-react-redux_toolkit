@@ -16,7 +16,7 @@ const Tabs = (props: Props) => {
     <div className={s.tabs}>
       <div className={s.tabs__wrapper}>
         {tabs.map((tab: Tab) => (
-          <div key={tab.value} className={s.tab}>
+          <div key={tab.value} className={s.tab + ' ' + s.active}>
             {tab.value}
           </div>
         ))}
