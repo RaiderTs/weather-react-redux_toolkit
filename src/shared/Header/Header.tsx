@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 import GlobalSvgSelector from "../../assets/icons/global/GlobalSvgSelector";
+import { useTheme } from "../../hooks/useTheme";
 import s from "./Header.module.scss";
 
 type Props = {};
 
 const Header = (props: Props) => {
-  const [theme, setTheme] = useState("light");
+  const theme = useTheme();
 
   const options = [
     { value: "kyiv", label: "Kyiv" },
@@ -17,7 +18,8 @@ const Header = (props: Props) => {
   const colourStyles = {
     control: (styles: {}) => ({
       ...styles,
-      backgroundColor: theme === "dark" ? "#4f4f4f" : "rgba(71, 147, 255, 0.2)",
+      backgroundColor:
+        theme.theme === "dark" ? "#4f4f4f" : "rgba(71, 147, 255, 0.2)",
       width: "194px",
       height: "37px",
       border: "none",
@@ -26,12 +28,12 @@ const Header = (props: Props) => {
     }),
     singleValue: (styles: {}) => ({
       ...styles,
-      color: theme === "dark" ? "#fff" : "#000",
+      color: theme.theme === "dark" ? "#fff" : "#000",
     }),
   };
 
   function changeTheme() {
-    setTheme(theme === "light" ? "dark" : "light");
+    theme.changeTheme(theme.theme === "dark" ? "light" : "dark");
   }
 
   useEffect(() => {
@@ -48,10 +50,10 @@ const Header = (props: Props) => {
     components.forEach((component) => {
       root.style.setProperty(
         `--${component}-default`,
-        `var(--${component}-${theme})`
+        `var(--${component}-${theme.theme})`
       );
     });
-  }, [theme]);
+  }, [theme.theme]);
 
   return (
     <header className={s.header}>
@@ -63,9 +65,9 @@ const Header = (props: Props) => {
       </div>
 
       <div className={s.wrapper}>
-        <div className={s.change_theme} onClick={changeTheme}>
+        <button type="submit" className={s.change_theme} onClick={changeTheme}>
           <GlobalSvgSelector id="change-theme" />
-        </div>
+        </button>
         <Select
           defaultValue={options[0]}
           styles={colourStyles}
