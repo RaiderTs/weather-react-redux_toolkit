@@ -18,7 +18,7 @@ const Home = (props: Props) => {
   console.log(weather);
 
   useEffect(() => {
-    dispatch(fetchCurrentWeather("dnipro"));
+    dispatch(fetchCurrentWeather("Dnipro"));
   }, []);
 
   return (
