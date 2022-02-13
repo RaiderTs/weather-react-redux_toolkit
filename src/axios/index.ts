@@ -5,9 +5,10 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  config.url = config.url + "$appid=" + process.env.REACT_APP_API_KEY;
+  config.url =
+    // eslint-disable-next-line no-useless-concat
+    config.url + "&units=metric" + "&appid=" + process.env.REACT_APP_API_KEY;
   return config;
 });
-
 
 export default api;

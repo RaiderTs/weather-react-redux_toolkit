@@ -13,8 +13,13 @@ type Response = {
   message: string;
 };
 
-const initialState = {
-  weather: {},
+const initialState: CurrentWeather = {
+  weather: {
+    main: {
+      temp: 0,
+    },
+    name: "",
+  },
   isLoading: false,
   response: {
     status: 0,
